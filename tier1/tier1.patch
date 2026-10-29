@@ -1,0 +1,49 @@
+--- a/mdurl/_parse.py
++++ b/mdurl/_parse.py
+@@ -122,7 +122,7 @@
+         # This is to support parse stuff like "  http://foo.com  \n"
+         rest = rest.strip()
+ 
+-        if not slashes_denote_host and len(url.split("#")) == 1:
++        if not slashes_denote_host and "#" not in url:
+             # Try fast path regexp
+             simple_path = SIMPLE_PATH_PATTERN.match(rest)
+             if simple_path:
+--- a/mdurl/_format.py
++++ b/mdurl/_format.py
+@@ -6,21 +6,20 @@
+ 
+ 
+ def format(url: URL) -> str:  # noqa: A001
+-    result = ""
+-
+-    result += url.protocol or ""
+-    result += "//" if url.slashes else ""
+-    result += url.auth + "@" if url.auth else ""
+-
+     if url.hostname and ":" in url.hostname:
+         # ipv6 address
+-        result += "[" + url.hostname + "]"
++        host = "[" + url.hostname + "]"
+     else:
+-        result += url.hostname or ""
+-
+-    result += ":" + url.port if url.port else ""
+-    result += url.pathname or ""
+-    result += url.search or ""
+-    result += url.hash or ""
+-
+-    return result
++        host = url.hostname or ""
++    return "".join(
++        (
++            url.protocol or "",
++            "//" if url.slashes else "",
++            url.auth + "@" if url.auth else "",
++            host,
++            ":" + url.port if url.port else "",
++            url.pathname or "",
++            url.search or "",
++            url.hash or "",
++        )
++    )
