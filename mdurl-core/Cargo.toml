@@ -1,0 +1,10 @@
+[package]
+name = "mdurl-core"
+version = "0.1.0"
+edition = "2021"
+description = "Markdown-URL parse/format kernel (port of executablebooks/mdurl)"
+license = "MIT"
+
+[lib]
+name = "mdurl_core"
+crate-type = ["rlib"]

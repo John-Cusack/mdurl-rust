@@ -1,0 +1,5 @@
+mdurl-rust: Rust port of executablebooks/mdurl (MIT).
+
+Upstream: https://github.com/executablebooks/mdurl
+Copyright (c) 2015 Vitaly Puzrin, Alex Kocharin.
+Copyright (c) 2021 Taneli Hukkinen

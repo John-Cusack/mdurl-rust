@@ -1,0 +1,22 @@
+[build-system]
+requires = ["maturin>=1,<2"]
+build-backend = "maturin"
+
+[project]
+name = "mdurl-rust"
+version = "0.1.0"
+description = "Rust-accelerated Markdown URL utilities (port of executablebooks/mdurl)"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = ["mdurl==0.1.2"]
+
+[project.urls]
+repository = "https://github.com/John-Cusack/mdurl-rust"
+
+[tool.maturin]
+bindings = "pyo3"
+module-name = "mdurl_rust._core"
+features = ["pyo3/extension-module"]
+manifest-path = "Cargo.toml"
+python-source = "."

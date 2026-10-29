@@ -1,0 +1,19 @@
+[workspace]
+members = ["mdurl-core"]
+resolver = "2"
+
+[package]
+name = "mdurl-py"
+version = "0.1.0"
+edition = "2021"
+description = "Python bindings for the mdurl-rust port"
+license = "MIT"
+repository = "https://github.com/John-Cusack/mdurl-rust"
+
+[lib]
+name = "_core"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+mdurl-core = { version = "0.1.0", path = "mdurl-core" }
+pyo3 = { version = "0.24", features = ["extension-module"] }
